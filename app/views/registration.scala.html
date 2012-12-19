@@ -1,0 +1,68 @@
+@(
+	registrationForm: Form[((String, String), (String, String))]
+)(
+    implicit 
+    request: play.api.mvc.RequestHeader
+)
+
+@import tags._
+
+@style = {
+	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/form.css")">  
+}
+
+@breadcrumb = {
+	<ul id="breadcrumb" class="menu">
+		<li><a href="@routes.Application.index()">Home</a></li>
+		<li>&raquo;</li>
+		<li><a href="#">Registration</a></li>
+	</ul>
+}
+
+@register = {
+	<form class="shop-form" action="@routes.RegistrationController.register" method="POST">
+		@if(registrationForm.hasErrors || registrationForm.hasGlobalErrors) {
+			@alert("red-alert", "Please make corrections...")
+		}
+		@registrationForm.globalErrors.map {error => 
+			<span class="error">@Messages(error.message)</span>
+		}
+		@registrationForm.forField("email.main") { field =>
+	      	<label>Email</label>
+	      	<input type="text" class="text-input" name="@field.name" value="@field.value">
+	      	@field.error.map { error =>
+	      		<span class="error">@Messages(error.message)</span> 
+	      	} 
+	    }
+		@registrationForm.forField("email.confirm") { field =>
+	      	<label>Confirm Email</label>
+	      	<input type="text" class="text-input" name="@field.name" value="@field.value">
+	      	@field.error.map { error =>
+	      		<span class="error">@Messages(error.message)</span> 
+	      	} 
+	    }
+	    @registrationForm.error("email").map { error => 
+	    	<span class="error">@Messages(error.message)</span> 
+	    }
+		@registrationForm.forField("password.main") { field =>
+	      	<label>Password</label>
+	      	<input type="password" class="text-input" name="@field.name" value="@field.value">
+	      	@field.error.map { error =>
+	        	<span class="error">@Messages(error.message)</span>
+	      	} 
+	    }
+		@registrationForm.forField("password.confirm") { field =>
+	      	<label>Confirm Password</label>
+	      	<input type="password" class="text-input" name="@field.name" value="@field.value">
+	      	@field.error.map { error =>
+	        	<span class="error">@Messages(error.message)</span>
+	      	} 
+	    }
+	    @registrationForm.error("password").map {error => 
+	    	<span class="error">@Messages(error.message)</span> 
+	    }
+		<input type="submit" class="submit-input" value="Register"/>  
+	</form>
+}
+
+@main("Register", breadcrumb, register, style) 

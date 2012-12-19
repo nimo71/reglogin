@@ -1,0 +1,213 @@
+body { 
+	font-family: Arial; 
+	text-align: center; 
+	font-size: 16px;
+	color: #666666;
+}
+
+#topbar {
+	width: 100%;
+	background-color: #ffffff;
+	border-color: #cccccc;
+	border-style: solid;
+	border-width: 2px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+#content-body {
+	width: 100%;
+}
+
+#footer {
+	float: left;
+	width: 100%;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+@media screen
+and (min-width: 1025px) { /* > landscape ipad */
+
+	#top-content {
+		width: 1024px;
+		height: 60px;
+		background-color: #ffffff;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#outer {
+		width: 1024px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#content {
+		width: 1024px;
+		float: left;
+		margin-left: -16px;
+		padding-left: 16px;
+		padding-right: 16px;
+		padding-bottom: 32px;
+		border-color: #cccccc;
+		border-style: dotted;
+		border-width: 1px;
+		border-top: none;
+		text-align: left;
+	}
+	#content-body {
+		float: left;
+	}
+	#footer-content {
+		float: left;
+		width: 1024px;
+		font-size: small;
+		color: #999999;
+		padding-top: 1em;
+		padding-left: 16px;
+		padding-right: 16px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.message-text {
+		margin-left: 2em;
+	}
+}
+
+/* Smaller than landscape ipad but greater than landscape iphone */
+@media screen
+and (max-width : 1024px) {
+	
+	#top-content {
+		width: 100%;
+		height: 60px;
+		background-color: #ffffff;
+	}
+	#outer {
+		width: 100%;
+	}
+	#content {
+		width: 100%;
+		text-align: center;
+		padding-bottom: 1em;
+	}
+	#footer-content {
+		width: 100%;
+		font-size: 0.8em;
+		color: #999999;
+		padding-top: 1em;
+	}
+	body {
+		font-size: 16px;
+	}
+	a {
+		min-width: 40px;
+		min-height: 40px;
+	}
+	.red-alert {
+		text-align: center;
+	}
+	.yellow-alert {
+		text-align: center;
+	}
+	.green-alert {
+		text-align: center;
+	}
+	.message-text {
+		width: 100%;
+		margin: auto;
+	}
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+	body {
+		font-size: 32px;
+	}
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+	body {
+		font-size: 32px;
+	}
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+	body {
+		font-size: 32px;
+	}
+}
+
+#breadcrumb {
+	margin-top: 1em;
+}
+h1 {
+	width: 100%;
+	color: #666666; 
+	font-size: 1.7em;
+}
+h2 {
+	width: 100%; 
+	color: #666666;
+	font-size: 1.7em;
+	margin-bottom: 0.5em;
+}
+p { 
+	margin-bottom: 1em; 
+}
+a {
+	text-decoration: none;
+	font-size: 1em;
+	color: #666666;
+}
+a:hover {
+	color: #ffa600;
+}
+.flash-message {
+	width: 100%;
+	margin-bottom: 1em;
+}
+.flash-message-content {
+	width: 100%;
+	height: 3em;
+	border-color: #cccccc;
+	border-style: solid;
+	border-width: 1px;
+}
+.message-text {
+	float: left;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+.red-alert {
+	background: #f8e8e8;
+	border-color: #d8c8c8;
+}
+.yellow-alert {
+	background: #f8f8e8;
+	border-color: #d8d8c8;
+}
+.green-alert {
+	background: #e8f8e8;
+	border-color: #c8d8c8;
+}
+.menu {
+	margin-top: 0.5em;
+	margin-bottom: 1em;
+}
+.menu li {
+	display: inline;
+	margin-right: 1em;
+}
+.click-touch {
+	min-width: 40px; 
+	min-height: 40px;
+}

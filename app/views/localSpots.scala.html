@@ -1,0 +1,100 @@
+@( 
+	encodedId: String
+)(
+    implicit 
+    request: play.api.mvc.RequestHeader
+)
+
+@import play.api.i18n._
+@import tags._
+
+@head = {
+<style type="text/css">
+	#location {
+		float: left;
+		width: 100%;
+		margin-top: 1em;
+	}
+	@@media screen and (min-width: 1025px) {
+		#location {
+			font-size: small;
+		}
+	}
+	#address {
+		font-weight: bold;
+	}
+</style>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script>  
+    $(window).ready(function(){  
+        initiateGeolocation();
+    });  
+
+    function initiateGeolocation() {  
+        navigator.geolocation.getCurrentPosition(handleGeolocationQuery, handleErrors);  
+    }  
+
+    function handleErrors(error)  
+    {  
+        switch(error.code)  
+        {  
+            case error.PERMISSION_DENIED: alert("user did not share geolocation data");  
+            break;  
+
+            case error.POSITION_UNAVAILABLE: alert("could not detect current position");  
+            break;  
+
+            case error.TIMEOUT: alert("retrieving position timed out");  
+            break;  
+
+            default: alert("unknown error");  
+            break;  
+        }  
+    }  
+
+    function handleGeolocationQuery(position){  
+    	getAddress( position.coords.latitude, position.coords.longitude ); 
+    }  
+        
+   
+    /* User google api to retrieve an address from lattitude and logitude */
+	function getAddress(latitude, longitude) {
+	    var geocoder = new google.maps.Geocoder();
+	    var yourLocation = new google.maps.LatLng(latitude, longitude);
+	 	var address = "Current address not available";
+	 	
+	    geocoder.geocode({ 'latLng': yourLocation }, function (results, status) {
+	        if (status == google.maps.GeocoderStatus.OK) {
+	            if (results[0]) {
+	                $('#location').html('Spots around your location: <span id="address">'+ results[0].formatted_address +'</span>');
+	            }
+	        } else {
+	            error("Reverse Geocoding failed due to: " + status);
+	        }
+	    });
+	}
+</script>  
+}
+
+@breadcrumb = {
+	<ul id="breadcrumb" class="menu">
+		<li><a href="@routes.Application.index()">Home</a></li>
+		<li>&raquo;</li>
+		<li><a href="#">Profile</a></li>
+	</ul>
+}
+
+@profile = {
+	<ul class="menu"><li>
+		<li><a href="@routes.LocationController.locations">Location</a></li>
+	</ul>
+	@request.flash.get("message").map { msg => 
+		@alert("green-alert", Messages(msg)) 
+	}
+	<span id="location">Your address is currently unavailable</span>
+}
+
+@main("Location", breadcrumb, profile, head) 
+
+<script type="text/javascript">
+</script>
